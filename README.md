@@ -59,15 +59,19 @@ Once Docker and WSL are running, follow these steps to run the microservices:
 ## Guide Questions & Answers
 
 **1. How does Django support microservices development?**
+
 Django can serve as an independent microservice by exposing RESTful API endpoints (using JsonResponse as seen in this lab, or the Django REST Framework). This allows different Django applications to act as decoupled, independent services that communicate with frontend applications or other backend services using standardized data formats like JSON over HTTP.
 
 **2. What advantages do containers provide for Django deployment?**
+
 Containers package the Django application alongside all its dependencies (like the specific Python version and required packages) into a single, isolated unit. This guarantees that the application will run consistently across any environment (development, staging, or production). It also prevents dependency conflicts between different projects and simplifies the scaling and deployment process.
 
 **3. How would you enable service-to-service communication?**
+
 Service-to-service communication can be achieved over HTTP using libraries such as Python's requests. In a Docker Compose environment, services can reach each other using their service names as hostnames. For example, the user service could make a request to the product service using the internal network URL: http://product-service:8000/products/.
 
 **4. How can this setup be scaled using Kubernetes?**
+
 To scale this setup in Kubernetes, you would:
 - Build and push the Docker images for both services to a container registry.
 - Write Kubernetes Deployment manifests for each service, allowing you to easily define the number of replicas (instances) you want running to handle more traffic.
